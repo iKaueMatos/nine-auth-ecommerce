@@ -1,4 +1,4 @@
-package fr.nine.core.config;
+package fr.nine.core.config.security.exception;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

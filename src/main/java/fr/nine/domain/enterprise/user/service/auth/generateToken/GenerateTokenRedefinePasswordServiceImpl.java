@@ -21,7 +21,6 @@ public class GenerateTokenRedefinePasswordServiceImpl implements GenerateTokenRe
     try {
       String token = numericTokenProvider.generateNumericToken();
       LocalDateTime expiryDate = numericTokenProvider.calculateExpiryDate();
-
       user.setResetPasswordToken(token);
       user.setResetTokenExpiryDate(expiryDate);
       userRepository.save(user);

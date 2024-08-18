@@ -1,4 +1,4 @@
-package fr.nine.core.config;
+package fr.nine.core.config.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

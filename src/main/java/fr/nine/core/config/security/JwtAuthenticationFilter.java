@@ -1,4 +1,4 @@
-package fr.nine.core.config;
+package fr.nine.core.config.security;
 
 import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.FilterChain;

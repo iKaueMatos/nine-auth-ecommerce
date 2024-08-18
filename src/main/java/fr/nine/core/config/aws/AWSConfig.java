@@ -1,4 +1,4 @@
-package fr.nine.core.config;
+package fr.nine.core.config.aws;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
