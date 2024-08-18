@@ -1,9 +1,8 @@
-package fr.nine.infra.controller.register;
+package fr.nine.infra.controller.auth.register;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +25,7 @@ public class RegisterUserController {
   private final JwtService jwtService;
 
   @PostMapping("/register")
-  public ResponseEntity<AuthenticationResponse> register(@Valid @RequestBody RegisterRequest request) {
+  public ResponseEntity<AuthenticationResponse> handle(@Valid @RequestBody RegisterRequest request) {
     AuthenticationResponse authenticationResponse = authenticationService.register(request);
     ResponseCookie jwtCookie = jwtService.generateJwtCookie(authenticationResponse.getAccessToken());
     ResponseCookie refreshTokenCookie = refreshTokenService

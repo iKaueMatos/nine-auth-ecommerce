@@ -1,4 +1,4 @@
-package fr.nine.infra.controller.logout;
+package fr.nine.infra.controller.auth.logout;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
@@ -24,7 +24,7 @@ public class LogoutController {
   private final JwtService jwtService;
  
   @PostMapping("/logout")
-  public ResponseEntity<Void> logout(HttpServletRequest request) {
+  public ResponseEntity<Void> handle(HttpServletRequest request) {
     String refreshToken = refreshTokenService.getRefreshTokenFromCookies(request);
     if (refreshToken != null) {
       refreshTokenService.deleteByToken(refreshToken);

@@ -1,9 +1,8 @@
-package fr.nine.infra.controller.login;
+package fr.nine.infra.controller.auth.login;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,7 +36,7 @@ public class LoginUserController {
       @ApiResponse(description = "Unauthorized", responseCode = "401", content = {
           @Content(schema = @Schema(implementation = ErrorResponse.class), mediaType = "application/json") })
   })
-  public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest request) {
+  public ResponseEntity<AuthenticationResponse> handle(@RequestBody AuthenticationRequest request) {
     AuthenticationResponse authenticationResponse = authenticationService.authenticate(request);
     ResponseCookie jwtCookie = jwtService.generateJwtCookie(authenticationResponse.getAccessToken());
     ResponseCookie refreshTokenCookie = refreshTokenService

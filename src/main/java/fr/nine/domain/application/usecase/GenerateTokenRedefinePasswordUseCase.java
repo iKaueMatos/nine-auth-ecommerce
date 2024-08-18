@@ -12,17 +12,16 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class RedefinePasswordUseCase {
+public class GenerateTokenRedefinePasswordUseCase {
   private final UserRepository userRepository;
   protected final ResetPasswordService resetPasswordService;
   private final EmailService emailService;
 
-  public void generateTokenUser(String email) {
+  public void execute(String email) {
         Optional<User> userOptional = userRepository.findByEmail(email);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             String token = resetPasswordService.initiatePasswordReset(user);
-
             emailService.sendResetPasswordEmail(email, token);
         } else {
             throw new UsernameNotFoundException("O usuario com este" + email + " não foi encontrado.");

@@ -1,4 +1,4 @@
-package fr.nine.domain.enterprise.user.service;
+package fr.nine.domain.enterprise.user.service.auth.RefleshTokenServiceImpl;
 
 import fr.nine.domain.application.exception.TokenException;
 import fr.nine.domain.application.payload.request.RefreshTokenRequest;

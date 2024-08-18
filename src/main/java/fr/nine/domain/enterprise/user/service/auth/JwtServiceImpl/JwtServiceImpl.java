@@ -1,4 +1,4 @@
-package fr.nine.domain.enterprise.user.service;
+package fr.nine.domain.enterprise.user.service.auth.JwtServiceImpl;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

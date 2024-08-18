@@ -1,4 +1,4 @@
-package fr.nine.domain.enterprise.user.service;
+package fr.nine.domain.enterprise.user.service.auth.AutheticationServiceImpl;
 
 import fr.nine.domain.application.payload.request.AuthenticationRequest;
 import fr.nine.domain.application.payload.request.RegisterRequest;

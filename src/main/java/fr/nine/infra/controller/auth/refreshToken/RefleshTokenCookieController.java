@@ -1,4 +1,4 @@
-package fr.nine.infra.controller.refreshToken;
+package fr.nine.infra.controller.auth.refreshToken;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
@@ -11,24 +11,18 @@ import fr.nine.domain.application.payload.request.RefreshTokenRequest;
 import fr.nine.domain.application.payload.response.RefreshTokenResponse;
 import fr.nine.domain.application.service.JwtService;
 import fr.nine.domain.application.service.RefreshTokenService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(name = "/api/v1/auth")
-public class RefleshTokenController {
+public class RefleshTokenCookieController {
   private final JwtService jwtService;
   private final RefreshTokenService refreshTokenService;
-  
-  @PostMapping("/refresh-token")
-  public ResponseEntity<RefreshTokenResponse> refreshToken(@RequestBody RefreshTokenRequest request) {
-    return ResponseEntity.ok(refreshTokenService.generateNewToken(request));
-  }
 
   @PostMapping("/refresh-token-cookie")
-  public ResponseEntity<Void> refreshTokenCookie(HttpServletRequest request) {
+  public ResponseEntity<Void> handle(HttpServletRequest request) {
     String refreshToken = refreshTokenService.getRefreshTokenFromCookies(request);
     RefreshTokenResponse refreshTokenResponse = refreshTokenService
         .generateNewToken(new RefreshTokenRequest(refreshToken));
