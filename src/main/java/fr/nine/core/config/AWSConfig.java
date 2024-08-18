@@ -8,7 +8,6 @@ import software.amazon.awssdk.services.ses.SesClient;
 
 @Configuration
 public class AWSConfig {
-  
   @Bean
   public SesClient sesClient() {
       return SesClient.builder()

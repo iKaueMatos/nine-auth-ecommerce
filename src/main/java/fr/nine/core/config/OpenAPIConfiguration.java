@@ -19,20 +19,18 @@ import fr.nine.domain.application.handler.ErrorResponse;
 
 @Configuration
 @OpenAPIDefinition(info = @Info(contact = @Contact(name = "nine", email = "ikaueveloper@gmail.com"), title = "", description = "", version = "0.0.1-SNAPSHOT"), servers = {
-                @Server(description = "Development", url = "http://localhost:8086"
-
-                )
+    @Server(description = "Development", url = "http://localhost:8086"
+    )
 }, security = {
-                @SecurityRequirement(name = "bearerAuth")
+    @SecurityRequirement(name = "bearerAuth")
 })
 @SecurityScheme(name = "bearerAuth", description = "JWT auth description", scheme = "bearer", type = SecuritySchemeType.HTTP, bearerFormat = "JWT", in = SecuritySchemeIn.HEADER)
-
 public class OpenAPIConfiguration {
-        @Bean
-        public OpenApiCustomizer schemaCustomizer() {
-                ResolvedSchema resolvedSchema = ModelConverters.getInstance()
-                                .resolveAsResolvedSchema(new AnnotatedType(ErrorResponse.class));
-                return openApi -> openApi
-                                .schema(resolvedSchema.schema.getName(), resolvedSchema.schema);
-        }
+  @Bean
+  public OpenApiCustomizer schemaCustomizer() {
+    ResolvedSchema resolvedSchema = ModelConverters.getInstance()
+        .resolveAsResolvedSchema(new AnnotatedType(ErrorResponse.class));
+    return openApi -> openApi
+        .schema(resolvedSchema.schema.getName(), resolvedSchema.schema);
+  }
 }

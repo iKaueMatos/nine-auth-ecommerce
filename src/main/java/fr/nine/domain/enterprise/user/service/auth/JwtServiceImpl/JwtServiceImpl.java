@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.WebUtils;
 
-import fr.nine.domain.application.service.JwtService;
+import fr.nine.domain.application.service.auth.JwtService;
 
 import java.security.Key;
 import java.util.Date;
