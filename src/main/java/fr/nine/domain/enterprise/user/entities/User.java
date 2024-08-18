@@ -13,11 +13,11 @@ import fr.nine.domain.enterprise.user.enums.Role;
 
 import java.util.Collection;
 
+@Data
+@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@Entity
 @Table(name = "_user")
 public class User implements UserDetails {
 
@@ -27,7 +27,11 @@ public class User implements UserDetails {
   private String firstname;
   private String lastname;
   private String email;
+  private String provider;
+  private String providerId;
   private String password;
+  private String accessToken;
+  private String refreshToken;
   private String resetPasswordToken;
   private LocalDateTime resetTokenExpiryDate;
 

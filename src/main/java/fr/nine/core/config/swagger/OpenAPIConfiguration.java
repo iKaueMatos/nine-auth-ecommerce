@@ -1,4 +1,4 @@
-package fr.nine.core.config;
+package fr.nine.core.config.swagger;
 
 import io.swagger.v3.core.converter.AnnotatedType;
 import io.swagger.v3.core.converter.ModelConverters;
