@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.WebUtils;
 
-import fr.nine.domain.application.service.auth.JwtService;
+import fr.nine.domain.application.service.auth.IJwtService;
 
 import java.security.Key;
 import java.util.Date;
@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-public class JwtServiceImpl implements JwtService {
+public class JwtServiceImpl implements IJwtService {
   @Value("${application.security.jwt.secret-key}")
   private String secretKey;
   @Value("${application.security.jwt.expiration}")

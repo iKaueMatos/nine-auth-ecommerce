@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.nine.domain.application.service.auth.JwtService;
-import fr.nine.domain.application.service.auth.RefreshTokenService;
+import fr.nine.domain.application.service.auth.IJwtService;
+import fr.nine.domain.application.service.auth.IRefreshTokenService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,8 +20,8 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping(name = "/api/v1/auth")
 @Tag(name = "Authentication", description = "The Authentication API. Contains operations like login, logout, refresh-token etc.")
 public class LogoutController {
-  private final RefreshTokenService refreshTokenService;
-  private final JwtService jwtService;
+  private final IRefreshTokenService refreshTokenService;
+  private final IJwtService jwtService;
 
   @PostMapping("/logout")
   public ResponseEntity<Void> handle(HttpServletRequest request) {

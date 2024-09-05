@@ -3,14 +3,14 @@ package fr.nine.domain.enterprise.user.service.auth.ResetPasswordServiceImpl;
 import org.springframework.stereotype.Service;
 
 import fr.nine.domain.application.exception.PasswordResetException;
-import fr.nine.domain.application.service.auth.ValidateResetTokenPasswordService;
+import fr.nine.domain.application.service.auth.IValidateResetTokenPasswordService;
 import fr.nine.infra.provider.generateNumericToken.NumericTokenProvider;
 import fr.nine.infra.repository.UserRepository;
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class ValidateResetTokenPasswordServiceImpl implements ValidateResetTokenPasswordService {
+public class ValidateResetTokenPasswordServiceImpl implements IValidateResetTokenPasswordService {
   private final UserRepository userRepository;
   private final NumericTokenProvider numericTokenProvider;
 

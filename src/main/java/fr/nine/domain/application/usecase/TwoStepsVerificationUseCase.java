@@ -2,7 +2,8 @@ package fr.nine.domain.application.usecase;
 
 import org.springframework.stereotype.Component;
 
-import fr.nine.domain.application.service.auth.IGenerateTokenRedefinePasswordService;
+import fr.nine.domain.enterprise.user.entities.User;
+import fr.nine.infra.provider.generateNumericToken.NumericTokenProvider;
 import fr.nine.infra.repository.UserRepository;
 import fr.nine.infra.service.sendEmail.EmailService;
 import fr.nine.infra.service.sendEmail.EmailStrategy;
@@ -10,34 +11,38 @@ import fr.nine.infra.service.sendEmail.SESEmailStrategy;
 import lombok.RequiredArgsConstructor;
 import software.amazon.awssdk.services.ses.SesClient;
 
+import java.util.Optional;
+
 @Component
 @RequiredArgsConstructor
-public class GenerateTokenRedefinePasswordUseCase {
+public class TwoStepsVerificationUseCase {
+  private final NumericTokenProvider tokenProvider;
   private final UserRepository userRepository;
-  protected final IGenerateTokenRedefinePasswordService generateTokenRedefinePasswordService;
   private final EmailService emailService;
   private final SesClient sesClient;
 
-  public void execute(String email) {
+  private String execute(String email) {
     StringBuilder result = new StringBuilder();
 
     userRepository.findByEmail(email).ifPresentOrElse(user -> {
-        String token = generateTokenRedefinePasswordService.initiatePasswordReset(user);
+        String token = tokenProvider.generateNumericToken();
 
-        String subject = "Redefinição de Senha";
+        String subject = "Verificação de Dois Fatores";
         String htmlBody = "<h1>Olá " + user.getFirstname() + ",</h1>"
-                + "<p>Para redefinir sua senha, utilize o seguinte token: <strong>" + token + "</strong>.</p>"
-                + "<p>Insira este token na página de redefinição de senha.</p>";
+                + "<p>Seu código de verificação é: <strong>" + token + "</strong>.</p>"
+                + "<p>Por favor, use este código para completar sua verificação.</p>";
         String textBody = "Olá " + user.getFirstname() + ",\n"
-                + "Para redefinir sua senha, utilize o seguinte token: " + token + ".\n"
-                + "Insira este token na página de redefinição de senha.";
+                + "Seu código de verificação é: " + token + ".\n"
+                + "Por favor, use este código para completar sua verificação.";
 
-        EmailStrategy sesStrategy = new SESEmailStrategy(sesClient, email);
+        EmailStrategy sesStrategy = new SESEmailStrategy(sesClient, "sender@example.com");
         emailService.setEmailStrategy(sesStrategy);
         emailService.sendEmail(email, subject, htmlBody, textBody);
         result.append("Email enviado com sucesso para ").append(email);
     }, () -> {
-      result.append("Não foi possível enviar email para o endereço informado: ").append(email);
+        result.append("Não foi possível enviar email para o endereço informado: ").append(email);
     });
+
+    return result.toString();
   }
 }

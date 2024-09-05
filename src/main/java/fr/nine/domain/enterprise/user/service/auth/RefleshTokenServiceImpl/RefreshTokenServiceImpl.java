@@ -3,8 +3,8 @@ package fr.nine.domain.enterprise.user.service.auth.RefleshTokenServiceImpl;
 import fr.nine.domain.application.exception.TokenException;
 import fr.nine.domain.application.payload.request.RefreshTokenRequest;
 import fr.nine.domain.application.payload.response.RefreshTokenResponse;
-import fr.nine.domain.application.service.auth.JwtService;
-import fr.nine.domain.application.service.auth.RefreshTokenService;
+import fr.nine.domain.application.service.auth.IJwtService;
+import fr.nine.domain.application.service.auth.IRefreshTokenService;
 import fr.nine.domain.enterprise.user.entities.RefreshToken;
 import fr.nine.domain.enterprise.user.entities.User;
 import fr.nine.domain.enterprise.user.enums.TokenType;
@@ -27,10 +27,10 @@ import java.util.UUID;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class RefreshTokenServiceImpl implements RefreshTokenService {
+public class RefreshTokenServiceImpl implements IRefreshTokenService {
   private final UserRepository userRepository;
   private final RefreshTokenRepository refreshTokenRepository;
-  private final JwtService jwtService;
+  private final IJwtService jwtService;
 
   @Value("${application.security.jwt.refresh-token.expiration}")
   private long refreshExpiration;

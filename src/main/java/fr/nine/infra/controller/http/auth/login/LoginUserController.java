@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.nine.domain.application.payload.request.AuthenticationRequest;
 import fr.nine.domain.application.payload.response.AuthenticationResponse;
-import fr.nine.domain.application.service.auth.AuthenticationService;
-import fr.nine.domain.application.service.auth.JwtService;
-import fr.nine.domain.application.service.auth.RefreshTokenService;
+import fr.nine.domain.application.service.auth.IAuthenticationService;
+import fr.nine.domain.application.service.auth.IJwtService;
+import fr.nine.domain.application.service.auth.IRefreshTokenService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -26,9 +26,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping(name = "/api/v1/auth")
 public class LoginUserController {
-  private final JwtService jwtService;
-  private final AuthenticationService authenticationService;
-  private final RefreshTokenService refreshTokenService;
+  private final IJwtService jwtService;
+  private final IAuthenticationService authenticationService;
+  private final IRefreshTokenService refreshTokenService;
 
   @PostMapping("/authenticate")
   @Operation(responses = {

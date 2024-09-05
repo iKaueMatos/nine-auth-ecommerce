@@ -1,30 +1,16 @@
 package fr.nine.infra.service.sendEmail;
 
-import software.amazon.awssdk.services.ses.SesClient;
-import software.amazon.awssdk.services.ses.model.*;
 import org.springframework.stereotype.Service;
-import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
 public class EmailService {
-  private final SesClient sesClient;
-  private final String senderEmail = "";
+  private EmailStrategy emailStrategy;
 
-  public void sendResetPasswordEmail(String recipientEmail, String token) {
-    try {
-      SendTemplatedEmailRequest request = SendTemplatedEmailRequest.builder()
-          .source(senderEmail)
-          .destination(Destination.builder()
-              .toAddresses(recipientEmail)
-              .build())
-          .template("PasswordResetTemplate")
-          .templateData("{\"token\":\"" + token + "\"}")
-          .build();
+  public void setEmailStrategy(EmailStrategy emailStrategy) {
+      this.emailStrategy = emailStrategy;
+  }
 
-      sesClient.sendTemplatedEmail(request);
-    } catch (SesException e) {
-      e.printStackTrace();
-    }
+  public void sendEmail(String recipientEmail, String subject, String htmlBody, String textBody) {
+      emailStrategy.sendEmail(recipientEmail, subject, htmlBody, textBody);
   }
 }

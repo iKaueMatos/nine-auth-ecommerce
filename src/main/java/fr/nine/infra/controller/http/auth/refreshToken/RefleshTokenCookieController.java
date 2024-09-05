@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.nine.domain.application.payload.request.RefreshTokenRequest;
 import fr.nine.domain.application.payload.response.RefreshTokenResponse;
-import fr.nine.domain.application.service.auth.JwtService;
-import fr.nine.domain.application.service.auth.RefreshTokenService;
+import fr.nine.domain.application.service.auth.IJwtService;
+import fr.nine.domain.application.service.auth.IRefreshTokenService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
@@ -18,8 +18,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping(name = "/api/v1/auth")
 public class RefleshTokenCookieController {
-  private final JwtService jwtService;
-  private final RefreshTokenService refreshTokenService;
+  private final IJwtService jwtService;
+  private final IRefreshTokenService refreshTokenService;
 
   @PostMapping("/refresh-token-cookie")
   public ResponseEntity<Void> handle(HttpServletRequest request) {

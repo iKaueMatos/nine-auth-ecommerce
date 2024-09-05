@@ -3,9 +3,9 @@ package fr.nine.domain.enterprise.user.service.auth.AutheticationServiceImpl;
 import fr.nine.domain.application.payload.request.AuthenticationRequest;
 import fr.nine.domain.application.payload.request.RegisterRequest;
 import fr.nine.domain.application.payload.response.AuthenticationResponse;
-import fr.nine.domain.application.service.auth.AuthenticationService;
-import fr.nine.domain.application.service.auth.JwtService;
-import fr.nine.domain.application.service.auth.RefreshTokenService;
+import fr.nine.domain.application.service.auth.IAuthenticationService;
+import fr.nine.domain.application.service.auth.IJwtService;
+import fr.nine.domain.application.service.auth.IRefreshTokenService;
 import fr.nine.domain.enterprise.user.entities.User;
 import fr.nine.domain.enterprise.user.enums.TokenType;
 import fr.nine.infra.repository.UserRepository;
@@ -20,12 +20,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class AuthenticationServiceImpl implements AuthenticationService {
+public class AuthenticationServiceImpl implements IAuthenticationService {
   private final PasswordEncoder passwordEncoder;
-  private final JwtService jwtService;
+  private final IJwtService jwtService;
   private final UserRepository userRepository;
   private final AuthenticationManager authenticationManager;
-  private final RefreshTokenService refreshTokenService;
+  private final IRefreshTokenService refreshTokenService;
 
   @Override
   public AuthenticationResponse register(RegisterRequest request) {

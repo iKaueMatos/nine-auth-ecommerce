@@ -8,7 +8,7 @@ import org.springframework.http.ResponseCookie;
 
 import java.util.Optional;
 
-public interface RefreshTokenService {
+public interface IRefreshTokenService {
   RefreshToken createRefreshToken(Long userId);
   RefreshToken verifyExpiration(RefreshToken token);
   Optional<RefreshToken> findByToken(String token);

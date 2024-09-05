@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.nine.domain.application.payload.request.RefreshTokenRequest;
 import fr.nine.domain.application.payload.response.RefreshTokenResponse;
-import fr.nine.domain.application.service.auth.RefreshTokenService;
+import fr.nine.domain.application.service.auth.IRefreshTokenService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.RequiredArgsConstructor;
 
@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping(name = "/api/v1/auth")
 public class RefleshTokenController {
-  private final RefreshTokenService refreshTokenService;
+  private final IRefreshTokenService refreshTokenService;
   
   @PostMapping("/refresh-token")
   public ResponseEntity<RefreshTokenResponse> handle(@RequestBody RefreshTokenRequest request) {
