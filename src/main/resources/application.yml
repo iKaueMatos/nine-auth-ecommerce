@@ -55,3 +55,5 @@ application:
       refresh-token:
         expiration: 1296000000
         cookie-name: refresh-jwt-cookie
+  email:
+    sender: contato.novasoftware@gmail.com

@@ -2,13 +2,15 @@ package fr.nine.infra.service.sendEmail;
 
 import software.amazon.awssdk.services.ses.SesClient;
 import software.amazon.awssdk.services.ses.model.*;
-import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class SESEmailStrategy implements EmailStrategy {
     private final SesClient sesClient;
+    
+    @Value("${application.email.sender}")
     private final String senderEmail;
 
     @Override
@@ -34,7 +36,6 @@ public class SESEmailStrategy implements EmailStrategy {
                     .build())
                 .build();
 
-            // Enviar o e-mail via SES
             sesClient.sendEmail(request);
         } catch (SesException e) {
             e.printStackTrace();

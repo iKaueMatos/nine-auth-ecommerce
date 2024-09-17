@@ -1,4 +1,4 @@
-package fr.nine.domain.enterprise.user.service.auth.generateToken;
+package fr.nine.domain.enterprise.user.service.auth.GenerateToken;
 
 import java.time.LocalDateTime;
 
