@@ -32,7 +32,7 @@ public class GenerateTokenRedefinePasswordUseCase {
                 + "Para redefinir sua senha, utilize o seguinte token: " + token + ".\n"
                 + "Insira este token na página de redefinição de senha.";
 
-        EmailStrategy sesStrategy = new SESEmailStrategy(sesClient, email);
+        EmailStrategy sesStrategy = new SESEmailStrategy();
         emailService.setEmailStrategy(sesStrategy);
         emailService.sendEmail(email, subject, htmlBody, textBody);
         result.append("Email enviado com sucesso para ").append(email);

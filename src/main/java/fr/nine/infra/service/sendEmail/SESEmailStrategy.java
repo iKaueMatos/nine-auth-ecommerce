@@ -11,7 +11,7 @@ public class SESEmailStrategy implements EmailStrategy {
     private final SesClient sesClient;
     
     @Value("${application.email.sender}")
-    private final String senderEmail;
+    private final String senderEmail = "";
 
     @Override
     public void sendEmail(String recipientEmail, String subject, String htmlBody, String textBody) {

@@ -35,7 +35,7 @@ public class TwoStepsVerificationUseCase {
                 + "Seu código de verificação é: " + token + ".\n"
                 + "Por favor, use este código para completar sua verificação.";
 
-        EmailStrategy sesStrategy = new SESEmailStrategy(sesClient, "sender@example.com");
+        EmailStrategy sesStrategy = new SESEmailStrategy();
         emailService.setEmailStrategy(sesStrategy);
         emailService.sendEmail(email, subject, htmlBody, textBody);
         result.append("Email enviado com sucesso para ").append(email);
